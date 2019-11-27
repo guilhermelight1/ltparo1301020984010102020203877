@@ -1,0 +1,362 @@
+
+/* 
+    Created on : 19-may-2014, 6:43:43
+    Author(s)     : Manuel Maroto, Luis Sevillano 
+*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+b{font-weight: bold;}
+i{font-style: italic;}
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #777;
+    line-height: 22px;
+}
+#wrapper{
+    width: 990px;
+    margin: 10px;
+}
+.xLabel, .yLabel {
+    font-size: 12px;
+}
+div.tooltip{
+    text-align: left;
+    width: 140px;
+    height: auto;
+    padding: 5px 8px  6px 8px;
+    background: white;
+    border-radius: 1.5px;
+    pointer-events: none;
+    line-height: 20px;
+    z-index: 2;
+    opacity: 0;
+    position: absolute;
+    -webkit-border-radius: 1.5px;
+    -moz-border-radius: 1.5px;
+    border-radius: 1.5px;
+    pointer-events: none;
+}
+.tooltip div{
+    margin: 5px 0 5px 0;
+    border-bottom: 1px solid gray;  
+} 
+
+.area{
+    fill: #C6DBEF;
+}
+
+#mes{
+    width: 10em;
+}
+#mes i{
+    font-size: 15px;
+    color: #555;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-size: 11px;
+    fill: #777;
+}
+
+.barr{
+    fill:#777;
+}
+
+
+.tooltip.hidden {
+    display: none;
+}
+#contenedorGrafico{
+    float: left;
+    margin-top: 35px;    
+}
+#contenedorGrafico svg{
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#selector{
+    float: left;
+    width: 425px;
+    height: 315px;
+    margin-top: 20px;
+  //  border: 1px solid black;
+}
+#selector i{
+    font-size: 15px;
+    color: #555;
+}
+#selector .grid{
+    opacity: 0.7;
+    stroke-width: 0.3;
+}
+
+polyline{
+    opacity: .3;
+    stroke: black;
+    stroke-width: 2px;
+    fill: none;
+}
+path.slice{
+    stroke: white;
+    stroke-width: 1;
+    cursor: pointer;
+}
+#contenedor{
+    float: left;
+    margin-top: 20px;
+    width: 535px;
+    height: 310px;
+   
+}
+#donut svg{
+    padding: 25px 5px 0 5px;
+}
+svg.barr{
+    padding-top: 10px;
+}
+#donut{
+    
+    margin-top: 10px;
+    font-size: 14px;
+}
+.total{
+    font-size: 18px;
+    font-weight: bold;
+
+}
+.label{
+    fill: #777;
+    font-size: 11px;
+    font-weight: bold;
+}
+.labels{
+    pointer-events: none;
+    font-size: 14px;
+}
+.units{
+    fill: gray;
+    font-size: 14px;
+}
+.inicial{
+
+}
+
+/*Estilos para chrome del slider*/
+input[type='range'] {
+    -webkit-appearance: none !important;
+    background:#6BAED6;
+    margin-top: 20px;
+    margin-left: 60px;
+    height:20px;
+    width: 650px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background:#2881BA;
+    height:20px;
+    width:20px;
+}
+/*Estilos para firefox del slider*/
+input[type='range']::-moz-range-thumb{
+
+    background:#6BAED6;
+    height:20px;
+    width:20px;
+}
+
+input[type='range']::-moz-range-track{
+
+    background:#2881BA;
+    height:20px;
+    width: 650px;
+}
+.path:hover{
+    opacity: 0.9;
+
+}
+/*Estilos para chrome del slider*/
+input[type='range'] {
+    -webkit-appearance: none !important;
+    background:#777;
+
+    margin: 15px 5px 10px 5px;
+    height:5px;
+    width: 930px;
+}
+input[type='range']:focus {
+    outline: 0;
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background:#fff;
+    height:20px;
+    width:20px;
+    border-radius: 20px;
+    border: 1px solid #777;
+}
+input[type='range']::-webkit-slider-thumb:focus {
+    outline: 0;
+}
+/*Estilos para firefox del slider*/
+input[type='range']::-moz-range-thumb{
+    background:#fff;
+    height:20px;
+    width:20px;
+    border-radius: 20px;
+
+}
+input[type='range']::-moz-range-thumb:focus{
+    outline: 0;
+}
+
+input[type='range']::-moz-range-track:focus{
+    outline:0;
+}
+input[type='range']::-moz-range-track{
+    background:#777;
+    height:5px;
+    width: 930px;
+
+}
+#cajaDatos{
+    float: left;
+    width: 200px;
+}
+#tasa{
+    font-size: 20px;
+    float:left;
+    height: 10px;
+    width: 200px;
+    padding: 50px 0 0 0;
+
+}
+#tasa-parados{
+    //float:left;
+}
+#year{
+    float:left;
+    font-size: 3em;
+    padding: 10px 0;
+    width: 300px;
+    border-bottom: #777 1px solid;
+}
+
+#maxMin{    
+    float: left;
+    width: 250px;
+
+    //border: solid 2px graytext;
+
+}
+#mediaParo{
+    margin-top: 20px;
+    float: left;
+    width: 300px;
+    font-size: 2em;
+}
+
+.mediaNacional{
+    margin-bottom: 20px;
+    border-bottom: solid 1px #777;
+    width: 300px;
+}
+
+#maximoParo{
+    font-size: 2em;
+
+    padding-top: 20px;
+    float:right;
+
+
+}
+#minimoParo{
+    margin-top: 20px;
+    float:right;
+
+    font-size: 2em;
+}
+
+#icono{
+    float: left;
+}
+
+.iconoMaximo{
+    height: 40px;
+    width: 40px;
+
+    float: right;
+    margin: 20px 10px 0 0;
+    background: url(IMG/iconos.png)-97px 100px;
+}
+
+.iconoMinimo{
+    height: 40px;
+    width: 40px;
+    background: url(IMG/iconos.png)-176px 100px;
+    float: right;
+    margin: 20px 10px 0 0;
+}
+
+.mano{
+    width: 40px;
+    height: 40px;
+    background: url(IMG/iconos.png)-250px 100px;
+    float:left
+}
+
+
+
+
+#control{
+    margin-top: 10px; 
+    float: right;
+}
+.inicio{
+    float: left;
+    font-size: .7em;
+}
+
+.final{
+    float:right;
+    font-size: .7em;
+}
+.c_group{
+    cursor: pointer;
+}
+#barras rect{
+    cursor: pointer;
+}
+
+/* ------------------------------SELECT------------- */
+select{
+    font-size: 14px;
+    float: right;
+    padding:5px;
+    margin: 0 10px 0 0;
+    width: 130px;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    border-radius:2px;
+    cursor:pointer;
+    -webkit-box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 1px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:black;
+    border:solid 1px gray;
+    outline:none;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
